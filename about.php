@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ekaterina Kostrigina</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(67249705, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/67249705" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <?php
+    include('navbar.php');
+    ?>
+    <div id="info">
+        <div id="info-container">
+            <h1><i>Ekaterina Kostrigina</i></h1>
+            <p>Екатерина Костригина верна петербургскому стилю, прославленному именами придворных ювелиров Фаберже и Болина. В фирме «Екатерина Костригина» собрана команда замечательных мастеров: ювелиров, художников, камнерезов, эмальеров, владеющих секретами сложных и редких техник ювелирного искусства.</p>
+            <p>Екатерина считает, что вещь должна отражать личность будущего владельца, его вкус. А это значит, что каждая из них неповторима. Можно с гордостью сказать, что Екатерина Костригина, работая бок о бок с мастерами по реставрации ювелирных изделий, стала не просто знатоком истории ювелирного искусства и антиквариата- она сумела создать коллекции, в которых воплотились её собственные художественные идеи. В изделиях Екатерины чувствуется, как удивительным образом стирается невидимая граница между прошлым и современным и появляется то самое ощущение преемственности, которое под силу только настоящему зрелому мастеру. Каждая вещь, будь то кольцо, браслет или подвеска, отличается особой изысканностью, ибо опалы, сапфиры, изумруды и другие камни в них играют в свои «игры», капельки бриллиантов и золото подчеркивают природную красоту стебельков и листочков полевых цветов. Эмалевые крылышки бабочек и стрекоз как будто вылетают из тиши и спокойствия летнего сада. Особое место в коллекциях Екатерины занимают броши: священные жуки-скарабеи, броши-цветы, броши-ягодки, которые напоминают нам о бренности всего живого и в то же время о вечности.
+            </p>
+        </div>
+    </div>
+<script src="./js/scripts.js" type="" defer></script>
+</body>
+</html>
