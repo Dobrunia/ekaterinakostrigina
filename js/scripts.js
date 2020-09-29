@@ -26,7 +26,7 @@ burgerBtn.addEventListener('click', () => {
     find.classList.add('disp')
 })
 try {jewelryBtn.addEventListener('click', () => {products.classList.toggle('disp')})}
-catch (e) {console.log(this.e)}
+catch (e) {}
 findUsBtn.addEventListener('click', () => {find.classList.toggle('disp')})
 
 //Scroll
@@ -115,5 +115,5 @@ for (let i = 1; i < 8; i++) {
         mainButtonFunction(shop[i], eval(shop[i].getAttribute('name')))
     })
 }}
-catch (e) {console.log(this.e)}
+catch (e) {}
 }
