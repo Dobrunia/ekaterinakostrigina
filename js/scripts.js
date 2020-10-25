@@ -17,7 +17,6 @@ const   /* Header menu*/
     bracelets = document.getElementsByClassName('position bracelet'),
     rings = document.getElementsByClassName('position ring'),
     necklace = document.getElementsByClassName('position necklace'),
-    beads = document.getElementsByClassName('position bead'),
     brooches = document.getElementsByClassName('position brooche');
 
 burgerBtn.addEventListener('click', () => {
@@ -99,12 +98,11 @@ button[0].addEventListener('click', () => {
     shop[4].checked = 0
     shop[5].checked = 0
     shop[6].checked = 0
-    shop[7].checked = 0
     firstClick = true
     Scroll()
 })
 
-for (let i = 1; i < 8; i++) {
+for (let i = 1; i < 7; i++) {
     shop[i] = document.getElementById(`shop${i}`)
     button[i] = document.getElementById(`button${i}`)
 
