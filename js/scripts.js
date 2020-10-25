@@ -11,7 +11,7 @@ const   /* Header menu*/
     products = document.getElementById('products'),
     find = document.getElementById('find'),
         /* Product Lists (массивы)*/
-    all = document.getElementsByClassName('position'),
+    allPositions = document.querySelectorAll('.position'),
     earrings = document.getElementsByClassName('position earring'),
     pendants = document.getElementsByClassName('position pendant'),
     bracelets = document.getElementsByClassName('position bracelet'),
@@ -19,99 +19,89 @@ const   /* Header menu*/
     necklace = document.getElementsByClassName('position necklace'),
     brooches = document.getElementsByClassName('position brooche');
 
-burgerBtn.addEventListener('click', () => {
-    header.classList.toggle('disp')
-    products.classList.add('disp')
-    find.classList.add('disp')
-})
-try {jewelryBtn.addEventListener('click', () => {products.classList.toggle('disp')})}
-catch (e) {}
-findUsBtn.addEventListener('click', () => {find.classList.toggle('disp')})
+    burgerBtn.addEventListener('click', () => {
+        header.classList.toggle('disp')
+        products.classList.add('disp')
+        find.classList.add('disp')
+    });
 
-//Scroll
-let Scroll = () => {
-    window.scroll({
-        top: document.querySelector('#first').offsetHeight,
-        behavior: 'smooth'
-    })
-}
+    if (jewelryBtn != null) {
+        jewelryBtn.addEventListener('click', () => products.classList.toggle('disp'));
+    };
 
-//Check page url
-let Check = () => {
-    if (location.href !== 'https://ekaterinakostrigina.com') {
-        location.href = 'https://ekaterinakostrigina.com'
-    }
-}
+    findUsBtn.addEventListener('click', () => find.classList.toggle('disp'));
 
-//function to Show or Hide element by id
-let demonstration = (props, visibility) => {
-    if (visibility == true) {
-        for (i = 0; i < props.length; i++) {
-        props[i].classList.remove('disp')
+    //Scroll
+    let Scroll = () => {
+        window.scroll({
+            top: document.getElementById('first').offsetHeight,
+            behavior: 'smooth'
+        })
+    };
+
+    //function to Show or Hide element by id
+    let demonstration = (props, visibility) => {
+        if (visibility === true) {
+            for (i = 0; i < props.length; i++) {
+            props[i].classList.remove('disp')
+            }
+        } else if (visibility === false) {
+            for (i = 0; i < props.length; i++) {
+            props[i].classList.add('disp')
+            }
         }
-    } else if (visibility == false) {
-        for (i = 0; i < props.length; i++) {
-        props[i].classList.add('disp')
-        }
-    } else {//for fun)
-        console.log('Set \"visibility\" param')
-    }
-}
+    };
 
-let mainCheckboxesFunction = (id, props) => {
-    if (id.checked) {
+    let mainCheckboxesFunction = (id, props) => {
+        if (id.checked) {
+            if (firstClick == true){
+                demonstration(allPositions, false)
+                demonstration(props, true)
+                firstClick = false
+            } else {
+                demonstration(props, true)
+            }
+        } else { //if id.checked = false, we hide elements by id
+            demonstration(props, false)
+        }
+    };
+
+    let mainButtonFunction = (id, props) => {
+        id.checked = !0
         if (firstClick == true){
-            demonstration(all, false)
+            demonstration(allPositions, false)
             demonstration(props, true)
             firstClick = false
         } else {
             demonstration(props, true)
         }
-    } else { //if id.checked = false, we hide elements by id
-        demonstration(props, false)
-    }
-}
+        Scroll()
+    };
 
-let mainButtonFunction = (id, props) => {
-    id.checked = !0
-    if (firstClick == true){
-        demonstration(all, false)
-        demonstration(props, true)
-        firstClick = false
-    } else {
-        demonstration(props, true)
-    }
-    Scroll()
-}
+        /*Buttons & Checkboxes*/
+    let shop = [],
+        button = [];
 
-    /*Buttons & Checkboxes*/
-let shop = [],
-    button = [];
+    try {
+    button[0] = document.getElementById('button0');
+    button[0].addEventListener('click', () => {
+        demonstration(allPositions, true)
+        shop[1].checked = 0
+        shop[2].checked = 0
+        shop[3].checked = 0
+        shop[4].checked = 0
+        shop[5].checked = 0
+        shop[6].checked = 0
+        firstClick = true
+        Scroll()
+    });
 
-try {
-button[0] = document.getElementById('button0')
-button[0].addEventListener('click', () => {
-    demonstration(all, true)
-    shop[1].checked = 0
-    shop[2].checked = 0
-    shop[3].checked = 0
-    shop[4].checked = 0
-    shop[5].checked = 0
-    shop[6].checked = 0
-    firstClick = true
-    Scroll()
-})
+    for (let i = 1; i < 7; i++) {
+        shop[i] = document.getElementById(`shop${i}`)
+        button[i] = document.getElementById(`button${i}`)
 
-for (let i = 1; i < 7; i++) {
-    shop[i] = document.getElementById(`shop${i}`)
-    button[i] = document.getElementById(`button${i}`)
-
-    shop[i].addEventListener('change', () => {
-        mainCheckboxesFunction(shop[i], eval(shop[i].getAttribute('name')))
-    })
-    button[i].addEventListener('click', () => {
-        mainButtonFunction(shop[i], eval(shop[i].getAttribute('name')))
-    })
-}}
-catch (e) {}
+        shop[i].addEventListener('change', () => mainCheckboxesFunction(shop[i], eval(shop[i].getAttribute('name'))))
+        button[i].addEventListener('click', () => mainButtonFunction(shop[i], eval(shop[i].getAttribute('name'))))
+    }}
+    catch (e) {}
 }
