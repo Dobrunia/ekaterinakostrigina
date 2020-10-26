@@ -1,33 +1,113 @@
 window.onload = function () {
-let /*Service fields*/
-    firstClick = true,
-    i;
-
-const   /* Header menu*/
-    burgerBtn = document.getElementById('Toggle'),
-    jewelryBtn = document.getElementById('Toggle2'),
-    findUsBtn = document.getElementById('Toggle3'),
-    header = document.getElementById('header'),
-    products = document.getElementById('products'),
-    find = document.getElementById('find'),
-        /* Product Lists (массивы)*/
-    allPositions = document.querySelectorAll('.position'),
-    earrings = document.getElementsByClassName('position earring'),
-    pendants = document.getElementsByClassName('position pendant'),
-    bracelets = document.getElementsByClassName('position bracelet'),
-    rings = document.getElementsByClassName('position ring'),
-    necklace = document.getElementsByClassName('position necklace'),
-    brooches = document.getElementsByClassName('position brooche');
+    const /* Header menu*/
+        burgerBtn = document.getElementById('Toggle'),
+        findUsBtn = document.getElementById('Toggle3'),
+        header = document.getElementById('header'),
+        find = document.getElementById('find'),
+        checkBoxes = document.getElementById('check'),
+        DATA = [{
+                type: 'ring',
+                imgLarge: 'img/jewelry/1.jpg',
+                imgSmall: 'img/jewelry/small/1.jpg',
+                description: 'Кольцо. Золото, бриллианты, демантоиды, розовый опал.'
+            },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/2.jpg',
+                imgSmall: 'img/jewelry/small/2.jpg',
+                description: 'Серьги. Золото, бриллианты, демантоиды, австралийские опалы, горячая эмаль, гравировка.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/3.jpg',
+                imgSmall: 'img/jewelry/small/3.jpg',
+                description: 'Серьги. Золото, серебро, бриллианты, резной кахолонг, горячая эмаль.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/4.jpg',
+                imgSmall: 'img/jewelry/small/4.jpg',
+                description: 'Серьги. Золото, серебро, бриллианты, барочный жемчуг, горячая эмаль.'
+                },
+            {
+                type: 'necklace',
+                imgLarge: 'img/jewelry/5.jpg',
+                imgSmall: 'img/jewelry/small/5.jpg',
+                description: 'Ожерелье. Золото, серебро, цветные сапфиры, бриллианты, горячая эмаль, морской жемчуг.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/6.jpg',
+                imgSmall: 'img/jewelry/small/6.jpg',
+                description: 'Серьги. Золото, серебро, цветные сапфиры, морской жемчуг, горячая эмаль.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/7.jpg',
+                imgSmall: 'img/jewelry/small/7.jpg',
+                description: 'Серьги. Золото, цветные сапфиры, бриллианты фантазийной формы, жемчуг кешью, щетки аметистовые.'
+                },
+            {
+                type: 'bracelet',
+                imgLarge: 'img/jewelry/8.jpg',
+                imgSmall: 'img/jewelry/small/8.jpg',
+                description: 'Браслет. бриллианты, барочный жемчуг, горячая эмаль.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/9.jpg',
+                imgSmall: 'img/jewelry/small/9.jpg',
+                description: 'Серьги. Золото, серебро, бриллианты, резной кахолонг, горячая эмаль.'
+                },
+            {
+                type: 'brooche',
+                imgLarge: 'img/jewelry/10.jpg',
+                imgSmall: 'img/jewelry/small/10.jpg',
+                description: 'Брошь-подвес. Золото, бриллианты фантазийной формы, резной аметист.'
+                },
+            {
+                type: 'earring',
+                imgLarge: 'img/jewelry/12.jpg',
+                imgSmall: 'img/jewelry/small/12.jpg',
+                description: 'Серьги. Золото, бриллианты огранки «Роза», резной аметист.'
+                },
+            {
+                type: 'brooche',
+                imgLarge: 'img/jewelry/13.jpg',
+                imgSmall: 'img/jewelry/small/13.jpg',
+                description: 'Брошь. Золото, сапфир, опал, горячая эмаль, гравировка.'
+                },
+            {
+                type: 'pendant',
+                imgLarge: 'img/jewelry/14.jpg',
+                imgSmall: 'img/jewelry/small/14.jpg',
+                description: 'Подвес. Золото, бриллианты, демантоиды, витражная эмаль, резная яшма'
+                },
+            {
+                type: 'pendant',
+                imgLarge: 'img/jewelry/15.jpg',
+                imgSmall: 'img/jewelry/small/15.jpg',
+                description: 'Подвес. Золото, бриллианты, демантоиды, горячая эмаль, сапфир'
+                },
+            {
+                type: 'ring',
+                imgLarge: 'img/jewelry/16.jpg',
+                imgSmall: 'img/jewelry/small/16.jpg',
+                description: 'Кольцо. Золото, бриллианты, сапфиры, барочный жемчуг'
+                },
+            {
+                type: 'brooche',
+                imgLarge: 'img/jewelry/17.jpg',
+                imgSmall: 'img/jewelry/small/17.jpg',
+                description: 'Брошь. Золото, бриллианты, резной нефрит, кахолонг'
+                }
+               ];
+    let activeFilters = []; // array of curent checked checkBoxes
 
     burgerBtn.addEventListener('click', () => {
         header.classList.toggle('disp')
-        products.classList.add('disp')
         find.classList.add('disp')
     });
-
-    if (jewelryBtn != null) {
-        jewelryBtn.addEventListener('click', () => products.classList.toggle('disp'));
-    };
 
     findUsBtn.addEventListener('click', () => find.classList.toggle('disp'));
 
@@ -39,69 +119,38 @@ const   /* Header menu*/
         })
     };
 
-    //function to Show or Hide element by id
-    let demonstration = (props, visibility) => {
-        if (visibility === true) {
-            for (i = 0; i < props.length; i++) {
-            props[i].classList.remove('disp')
-            }
-        } else if (visibility === false) {
-            for (i = 0; i < props.length; i++) {
-            props[i].classList.add('disp')
-            }
-        }
+    let renderItems = (items) => {
+        items.forEach((item) => {
+            document.getElementById('positions').innerHTML += `<div class="position ${item.type}"><a href="${item.imgLarge}" data-lightbox="${item.type}" data-title="${item.description}"><img class="photo" src="${item.imgSmall}" alt="" style="width: 300px; height: auto;"></a></div>`;
+        })
     };
 
-    let mainCheckboxesFunction = (id, props) => {
-        if (id.checked) {
-            if (firstClick == true){
-                demonstration(allPositions, false)
-                demonstration(props, true)
-                firstClick = false
-            } else {
-                demonstration(props, true)
+    let filterItems = () => {
+        let someFiltersData = [];
+
+        DATA.forEach((item) => {
+            activeFilters.forEach((elem) => {
+                if (elem === item.type) {
+                    someFiltersData.push(item)
+                }
+            })
+        })
+        document.getElementById('positions').innerHTML = ''
+        renderItems(someFiltersData);
+    };
+
+    if (checkBoxes != null) {
+        checkBoxes.addEventListener('change', (event) => {
+            if (event.target.nodeName === 'INPUT') {
+                if (activeFilters.indexOf(event.target.name) >= 0) {
+                    activeFilters.splice(activeFilters.indexOf(event.target.name), 1);
+                } else {
+                    activeFilters.push(event.target.name);
+                }
+                filterItems();
             }
-        } else { //if id.checked = false, we hide elements by id
-            demonstration(props, false)
-        }
-    };
+        });
 
-    let mainButtonFunction = (id, props) => {
-        id.checked = !0
-        if (firstClick == true){
-            demonstration(allPositions, false)
-            demonstration(props, true)
-            firstClick = false
-        } else {
-            demonstration(props, true)
-        }
-        Scroll()
-    };
-
-        /*Buttons & Checkboxes*/
-    let shop = [],
-        button = [];
-
-    try {
-    button[0] = document.getElementById('button0');
-    button[0].addEventListener('click', () => {
-        demonstration(allPositions, true)
-        shop[1].checked = 0
-        shop[2].checked = 0
-        shop[3].checked = 0
-        shop[4].checked = 0
-        shop[5].checked = 0
-        shop[6].checked = 0
-        firstClick = true
-        Scroll()
-    });
-
-    for (let i = 1; i < 7; i++) {
-        shop[i] = document.getElementById(`shop${i}`)
-        button[i] = document.getElementById(`button${i}`)
-
-        shop[i].addEventListener('change', () => mainCheckboxesFunction(shop[i], eval(shop[i].getAttribute('name'))))
-        button[i].addEventListener('click', () => mainButtonFunction(shop[i], eval(shop[i].getAttribute('name'))))
-    }}
-    catch (e) {}
+        renderItems(DATA);
+    }
 }
