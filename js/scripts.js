@@ -111,14 +111,6 @@ window.onload = function () {
 
     findUsBtn.addEventListener('click', () => find.classList.toggle('disp'));
 
-    //Scroll
-    let Scroll = () => {
-        window.scroll({
-            top: document.getElementById('first').offsetHeight,
-            behavior: 'smooth'
-        })
-    };
-
     let renderItems = (items) => {
         items.forEach((item) => {
             document.getElementById('positions').innerHTML += `<div class="position ${item.type}"><a href="${item.imgLarge}" data-lightbox="${item.type}" data-title="${item.description}"><img class="photo" src="${item.imgSmall}" alt="" style="width: 300px; height: auto;"></a></div>`;
